@@ -37,5 +37,52 @@ public class ApplicationDbContext : DbContext
             .HasMany(e => e.Authors)
             .WithMany(e => e.Books);
         
+        modelBuilder.Entity<PublishingHouse>(entity =>
+        {
+
+            entity.Property(ph => ph.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(ph => ph.Country)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(ph => ph.City)
+                .HasMaxLength(50)
+                .IsRequired();
+        });
+        
+        modelBuilder.Entity<Book>(entity =>
+        {
+
+            entity.Property(b => b.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(b => b.ReleaseDate)
+                .IsRequired();
+        }); 
+        
+        modelBuilder.Entity<Genre>(entity =>
+        {
+
+            entity.Property(g => g.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+            
+        }); 
+        
+        modelBuilder.Entity<Author>(entity =>
+        {
+            entity.Property(a => a.FirstName)
+                .HasMaxLength(50)
+                .IsRequired();
+            
+            entity.Property(a => a.LastName)
+                .HasMaxLength(50)
+                .IsRequired();
+        }); 
+
     }
 }

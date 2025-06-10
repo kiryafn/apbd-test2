@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Test.Data;
 using Test.DTOs;
-using Test.Models;
 using Test.Services.Abstractions;
 
 namespace Test.Services;
