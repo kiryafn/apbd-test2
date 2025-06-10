@@ -1,10 +1,14 @@
 using Test.Data;
+using Test.Models;
+using Test.Services;
+using Test.Services.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>();
 
-// builder.Services.AddScoped<Interface, Service>();
+builder.Services.AddScoped<IPublishingHouseService, PublishingHouseService>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 builder.Services.AddControllers();
 

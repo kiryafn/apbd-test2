@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Test.Models;
 
 namespace Test.Data;
 
@@ -14,7 +15,10 @@ public class ApplicationDbContext : DbContext
                             throw new ArgumentNullException(nameof(configuration), "Connection string is not set");
     }
     
-    // db sets here
+    public DbSet<PublishingHouse> PublishingHouses { get; set; }
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Genre> Genres { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -24,7 +28,14 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
+
+        modelBuilder.Entity<Book>()
+            .HasMany(e => e.Genres)
+            .WithMany(e => e.Books);
+
+        modelBuilder.Entity<Book>()
+            .HasMany(e => e.Authors)
+            .WithMany(e => e.Books);
         
     }
 }
