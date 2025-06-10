@@ -16,6 +16,8 @@ public class BookController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddBook([FromBody] CreateBookDTO dto)
     {
         try

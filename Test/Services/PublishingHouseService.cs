@@ -19,9 +19,9 @@ public class PublishingHouseService : IPublishingHouseService
     {
         var query = _context.PublishingHouses
             .Include(p => p.Books)
-            .ThenInclude(b => b.Genres)
+                .ThenInclude(b => b.Genres)
             .Include(p => p.Books)
-            .ThenInclude(b => b.Authors)
+                .ThenInclude(b => b.Authors)
             .AsQueryable();
 
         if (!string.IsNullOrEmpty(country))

@@ -15,6 +15,7 @@ public class PublishingHousesController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll([FromQuery] string? country, [FromQuery] string? city)
     {
         var result = await _service.GetAllAsync(country, city);
